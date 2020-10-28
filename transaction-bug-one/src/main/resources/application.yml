@@ -1,0 +1,32 @@
+# 服务器端口
+server:
+  port: 9000
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/jalrdb?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initial-size: 5
+    max-active: 50
+    min-idle: 3
+    # 配置获取连接等待超时的时间
+    max-wait: 60000
+    # 连接池缓存, Oracle 开启, MySQL 关闭.
+    pool-prepared-statements: false
+    max-pool-prepared-statement-per-connection-size: -1
+    # 连接检测
+    validation-query: select 'x'
+    validation-query-timeout: 30000
+    test-on-borrow: false
+    test-on-return: false
+    test-while-idle: true
+    # 保持连接=idle不会被踢出, 保持连接不被踢出的时间=5min, 检测空闲连接的间隔=1min
+    keep-alive: true
+    min-evictable-idle-time-millis: 300000
+    time-between-eviction-runs-millis: 60000
+    connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml
